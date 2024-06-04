@@ -1,5 +1,14 @@
+
 import Image from "next/image";
 import styles from "./page.module.css";
+
+const auth = firebaseApp.auth();
+const db = firebaseApp.firestore();
+if (location.hostname === "127.0.0.1") {
+  console.log("127.0.0.1 detected!");
+  auth.useEmulator("http://127.0.0.1:9099");
+  db.useEmulator("127.0.0.1", 8080);
+}
 
 export default function Home() {
   return (
@@ -68,13 +77,24 @@ export default function Home() {
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           className={styles.card}
           target="_blank"
-          rel="noopener noreferrer"
-        >
+          rel="noopener noreferrer">
           <h2>
             Templates <span>-&gt;</span>
           </h2>
           <p>Explore starter templates for Next.js.</p>
         </a>
+
+        <a
+          href="/signup"
+          className={styles.card}
+          target="_blank"
+          rel="noopener noreferrer">
+          <h2>
+            My App<span>-&gt;</span>
+          </h2>
+          <p>Hello world!</p>
+        </a>
+
 
         <a
           href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
@@ -93,3 +113,4 @@ export default function Home() {
     </main>
   );
 }
+
